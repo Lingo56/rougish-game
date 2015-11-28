@@ -1,0 +1,40 @@
+language: python
+sudo: false
+
+env:
+  - LUA_VERSION="luajit 2.0.4" LUA_RUNTIME=luajit
+
+before_install:
+  - wget https://raw.githubusercontent.com/mpeterv/hererocks/master/hererocks.py
+  - python hererocks.py l -r^ --$LUA_VERSION
+  - export PATH=$PATH:$PWD/l/bin
+  - luarocks install luafilesystem
+  - luarocks install luacheck
+  - luarocks install busted
+  - luarocks install luacov-coveralls
+
+install: true
+  #- luarocks make # Uncomment if rockspec.
+
+before_script:
+  - luacheck --formatter=TAP --codes --std=busted+$LUA_RUNTIME spec
+  - luacheck --formatter=TAP --codes --std=$LUA_RUNTIME src
+
+script:
+  - busted --coverage --lpath="./spec/?.lua;./src/?.lua"
+
+before_cache:
+  - rm -rf $HOME/.cache/pip/log/
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $PWD/l
+
+after_success:
+  - luacov-coveralls
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

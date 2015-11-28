@@ -1,0 +1,42 @@
+[PRIORITY (In Order)]
+1: Commenting and documentation of the libraries
+2: Collision with bullets (Killing enemies)
+3: Screen Shake (Give a good punch when shooting)
+4: Shooting with mouse click
+5: Camera movement with the mouse
+6: Shooting based on cursor position
+7: Level moving with the player in center* (Player's position slightly changed based on camera/cursor position)
+8: Setting level boundaries (Can't move after reaching the edge of a box like Agar.io)
+9: Random drop system
+{Example of eventual state for camera and player movement: https://youtu.be/Jfdk9_SH7nY}
+
+[COSMETIC (Later Development)]
+Assets for the in game characters
+Music
+Particle Effects
+Sound Effects* (Would help to have a good shooting sound early)
+
+[FEEL (Stuff to give impact to, in order)]
+Shooting
+Eliminating enemies
+{Article on the feel for Nuclear Throne (main inspiration) http://www.rockpapershotgun.com/2013/10/21/interview-jan-willem-nijman-on-nuclear-thrones-feel/}
+
+[SIZE]
+Target:
+Randomly gen enemies in a large field (Think Agar.io as the level design)
+Make shooting feel good
+Have rogue like power ups/weapons
+Perma-death
+Some good music and sounds
+
+Possible features later (Might be too time consuming or less important):
+Main Menu
+Bosses
+Cookie Clicker/Adventure Capitalist/MGSV type meta game after you lose
+Levels (get rid of random enemy gen, instead of large field pick a pre-made level from a selection)
+Larger enemy variety (instead of 1-3, have 7-15)
+Save States
+Game ending
+
+Side features (Not important, but might make things more fun if we have time):
+MP (Local and/or Online)

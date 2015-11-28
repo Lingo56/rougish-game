@@ -1,0 +1,5 @@
+return {
+  modules = {
+    main = "src/main.lua"
+  }
+}
