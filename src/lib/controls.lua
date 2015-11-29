@@ -108,7 +108,7 @@ local function bindingExists(bindingName)
 end
 
 local function returnBindingOrNew(bindingName)
-  local workingBinding, isNew = nil, false
+  local workingBinding, isNew = nil, false --luacheck: no unused
   if bindingExists(bindingName) then
     workingBinding = controls.bindings[bindingName]
   else
