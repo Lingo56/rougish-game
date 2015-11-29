@@ -10,8 +10,8 @@ local physicsControl = require('lib.physics')()
 local util = require('lib.util')
 
 onLoad:addCallback(function()
-  config = require('lib.dkjson').decode((love.filesystem.read(configLocation)))
-  controlParser.parse(require('lib.dkjson').decode((love.filesystem.read(keybindsLocation))))
+  config = require('lib.vendor.dkjson').decode((love.filesystem.read(configLocation)))
+  controlParser.parse(require('lib.vendor.dkjson').decode((love.filesystem.read(keybindsLocation))))
 end, 100)
 
 local camera = {

@@ -2,8 +2,8 @@ io.stdout:setvbuf('no')
 print('\n')
 
 local engine = require('engine')
-require('lib.light')
-require('lib.postshader')
+require('lib.vendor.light')
+require('lib.vendor.postshader')
 
 local lightWorld, lightMouse
 local lightDirection, colorAberration = 0, 0

@@ -1,4 +1,4 @@
-local bump = require('lib.bump')
+local bump = require('lib.vendor.bump')
 
 local setmetatable = setmetatable
 local pairs = pairs
