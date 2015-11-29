@@ -109,12 +109,12 @@ end
 
 local function returnBindingOrNew(bindingName)
   local workingBinding, isNew = nil, false
-    if bindingExists(bindingName) then
-      workingBinding = controls.bindings[bindingName]
-    else
-      workingBinding = createBinding(bindingName)
-      isNew = true
-    end
+  if bindingExists(bindingName) then
+    workingBinding = controls.bindings[bindingName]
+  else
+    workingBinding = createBinding(bindingName)
+    isNew = true
+  end
   return workingBinding, isNew
 end
 
