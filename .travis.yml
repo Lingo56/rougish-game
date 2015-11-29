@@ -18,7 +18,7 @@ install: true
 
 before_script:
   - luacheck --formatter=TAP --codes --std=busted+$LUA_RUNTIME spec
-  - luacheck --formatter=TAP --codes --std=$LUA_RUNTIME --exclude-files="src/**/vendor/*.lua" --include-files="src/**/*.lua"
+  - luacheck --formatter=TAP --codes --std=$LUA_RUNTIME --exclude-files="src/lib/vendor/*" src
 
 script:
   - busted --coverage --lpath="./spec/?.lua;./src/?.lua"
