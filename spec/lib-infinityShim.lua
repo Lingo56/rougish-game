@@ -11,28 +11,28 @@ createShim = function(options)
       t[k] = newShim
       return newShim
     end,
-    __unm = function(t)
+    __unm = function()
       return 1
     end,
-    __add = function(t)
+    __add = function()
       return 1
     end,
-    __sub = function(t)
+    __sub = function()
       return 1
     end,
-    __mul = function(t)
+    __mul = function()
       return 1
     end,
-    __div = function(t)
+    __div = function()
       return 1
     end,
-    __mod = function(t)
+    __mod = function()
       return 1
     end,
-    __pow = function(t)
+    __pow = function()
       return 1
     end,
-    __concat = function(t)
+    __concat = function()
       return 1
     end
   }
