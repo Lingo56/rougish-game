@@ -22,6 +22,7 @@ local camera = {
   }
 }
 
+--Screenshake code
 drawTick:addCallback(function()
   if (camera.shake.magnitude ~= 0) then love.graphics.translate((function()
     if camera.shake.signX > 25 then

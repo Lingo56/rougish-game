@@ -6,11 +6,11 @@
 
 - [x] Screen Shake (Give a good punch when shooting)
 
-- Shooting with mouse click
+- Shooting with mouse click* (Under Debate)
 
-- Camera movement with the mouse
+- Camera movement with the mouse* (Under Debate)
 
-- Shooting based on cursor position
+- Shooting based on cursor position* (Under Debate)
 
 - Level moving with the player in center* (Player's position slightly changed based on camera/cursor position)
 
