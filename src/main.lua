@@ -337,7 +337,7 @@ end)
 
 spawnerFactory.new(normalEnemy, {
   spawnY = normalEnemy.size,
-  rate = 0.25
+  rate = 0.18
 })
 
 engine.when.tick(function(deltaTime)
