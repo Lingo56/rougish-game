@@ -3,48 +3,49 @@ Code based on:
 http://nova-fusion.com/2011/04/19/cameras-in-love2d-part-1-the-basics/
 ]]
 
-require "camera"
 
-local player = {}
-player.sizeX = 50
-player.sizeY = 50
-player.posX = 0
-player.posY = 0
+local camera = {}
+camera.x = 0
+camera.y = 0
+camera.scaleX = 1
+camera.scaleY = 1
+camera.rotation = 0
+camera.translateX = 0
+camera.translateY = 0
 
 function love.update()
   if love.keyboard.isDown('w') then
-    player.posY = player.posY - 10
+    camera.translateY = camera.translateY - 1
   end
   if love.keyboard.isDown('s') then
-      player.posY = player.posY + 10
+    camera.translateY = camera.translateY + 1
   end
   if love.keyboard.isDown('a') then
-      player.posX = player.posX - 10
+    camera.translateX = camera.translateX - 1
   end
   if love.keyboard.isDown('d') then
-    player.posX = player.posX + 10
-  end
-  if love.keyboard.isDown('e') then
-    camera.scaleX = camera.scaleX + 0.0075
-    camera.scaleY = camera.scaleY + 0.0075
-  end
-  if love.keyboard.isDown('q') then
-    camera.scaleX = camera.scaleX - 0.0075
-    camera.scaleY = camera.scaleY - 0.0075
+    camera.translateX = camera.translateX + 1
   end
   if love.keyboard.isDown('escape') then
     love.event.push('quit')
   end
+end
 
-  camera.x = player.posX - love.graphics.getWidth()/2
+function camera:set()
+  love.graphics.push()
+  love.graphics.rotate(-self.rotation)
+  love.graphics.scale(1 * camera.scaleX , 1 * camera.scaleY)
+  love.graphics.translate(camera.translateX, camera.translateY)
+end
 
-  camera.y = player.posY - love.graphics.getHeight()/2
+function camera:unset()
+  love.graphics.pop()
 end
 
 function love.draw()
   camera:set()
   love.graphics.setColor( 50, 255, 60, 255)
-  love.graphics.rectangle("fill", player.posX, player.posY, player.sizeX, player.sizeY)
+  love.graphics.rectangle("fill", (love.graphics.getHeight()/2) + camera.translateX ,(love.graphics.getWidth()/2 )+ camera.translateY , 50, 50)
   love.graphics.setColor( 255, 255, 255, 255)
   love.graphics.rectangle("fill", 150, 150, 50, 50)
   camera:unset()
