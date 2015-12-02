@@ -1,46 +1,64 @@
-require "camera"
+local Camera = require('hump.camera')
+
+local scale = 1
+local scaleSpeed = 0.1
 
 local player = {}
 player.sizeX = 50
 player.sizeY = 50
-player.posX = 0
-player.posY = 0
+player.x = 0
+player.y = 0
+player.angle = 0
+
+local playerSquare = love.graphics.rectangle("fill", player.x, player.y, player.sizeX, player.sizeY)
+
+local cam = Camera(player.x, player.y)
 
 function love.update()
   if love.keyboard.isDown('w') then
-    player.posY = player.posY - 10
+    player.y = player.y - 10
   end
   if love.keyboard.isDown('s') then
-      player.posY = player.posY + 10
+    player.y = player.y + 10
   end
   if love.keyboard.isDown('a') then
-      player.posX = player.posX - 10
+    player.x = player.x - 10
   end
   if love.keyboard.isDown('d') then
-    player.posX = player.posX + 10
-  end
-  if love.keyboard.isDown('e') then
-    _G.camera.scaleX = _G.camera.scaleX + 0.0075
-    _G.camera.scaleY = _G.camera.scaleY + 0.0075
+    player.x = player.x + 10
   end
   if love.keyboard.isDown('q') then
-    _G.camera.scaleX = _G.camera.scaleX - 0.0075
-    _G.camera.scaleY = _G.camera.scaleY - 0.0075
+    cam:zoom(scale + scaleSpeed)
+  end
+  if love.keyboard.isDown('e') then
+    cam:zoom(scale - scaleSpeed)
   end
   if love.keyboard.isDown('escape') then
     love.event.push('quit')
   end
+  local dx,dy = player.x - cam.x + (player.sizeX / 2), player.y - cam.y + (player.sizeY / 2)
+cam:move(dx/2, dy/2)
 
-  _G.camera.x = player.posX - love.graphics.getWidth()/2
+  player.midPosX = player.x - (player.sizeX / 2)
+  player.midPosY = player.y - (player.sizeY / 2)
 
-  _G.camera.y = player.posY - love.graphics.getHeight()/2
+  local mouseX, mouseY = love.mouse.getPosition( )
+
+  player.angle = math.atan2(mouseY - player.midPosY, mouseX - player.midPosX)
 end
 
 function love.draw()
-  _G.camera:set()
+  cam:attach()
+  --player
+  --love.graphics.rotate(1)
+  love.graphics.rotate(player.angle)
   love.graphics.setColor( 50, 255, 60, 255)
-  love.graphics.rectangle("fill", player.posX, player.posY, player.sizeX, player.sizeY)
-  love.graphics.setColor( 255, 255, 255, 255)
-  love.graphics.rectangle("fill", 150, 150, 50, 50)
-  _G.camera:unset()
+  love.graphics.rectangle("fill", player.x, player.y, player.sizeX, player.sizeY)
+  --aim dot on player
+  love.graphics.setColor( 255, 0, 255, 255)
+  love.graphics.rectangle("fill", player.x + (player.sizeX / 2.5), player.y, 10, 10)
+  --extra square
+--[[ love.graphics.setColor( 255, 255, 255, 255)
+  love.graphics.rectangle("fill", 250, 300, 50, 50)]]
+  cam:detach()
 end

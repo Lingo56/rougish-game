@@ -4,12 +4,12 @@ http://nova-fusion.com/2011/04/19/cameras-in-love2d-part-1-the-basics/
 ]]
 
 
-_G.camera = {}
-_G.camera.x = 0
-_G.camera.y = 0
-_G.camera.scaleX = 1
-_G.camera.scaleY = 1
-_G.camera.rotation = 0
+local camera = {}
+camera.x = 0
+camera.y = 0
+camera.scaleX = 1
+camera.scaleY = 1
+camera.rotation = 0
 
 function camera:set()
 love.graphics.push()
@@ -46,3 +46,5 @@ function camera:setScale(sx, sy)
 self.scaleX = sx or self.scaleX
 self.scaleY = sy or self.scaleY
 end
+
+return camera
