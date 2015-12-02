@@ -6,6 +6,8 @@ local drawTick = require('lib.tickman')()
 local onLoad = require('lib.tickman')()
 local eventer = require('lib.events')
 local controlParser = require('lib.controls')
+local ecs = require('lib.vendor.tiny') -- http://bakpakin.github.io/tiny-ecs/doc/
+local viewports = require('lib.vendor.hump.camera') -- http://hump.readthedocs.org/en/latest/camera.html
 
 onLoad:addCallback(function()
   config = require('lib.vendor.dkjson').decode((love.filesystem.read(configLocation)))
