@@ -6,53 +6,11 @@ local drawTick = require('lib.tickman')()
 local onLoad = require('lib.tickman')()
 local eventer = require('lib.events')
 local controlParser = require('lib.controls')
-local physicsControl = require('lib.physics')()
-local util = require('lib.util')
 
 onLoad:addCallback(function()
   config = require('lib.vendor.dkjson').decode((love.filesystem.read(configLocation)))
   controlParser.parse(require('lib.vendor.dkjson').decode((love.filesystem.read(keybindsLocation))))
-end, 100)
-
-local camera = {
-  shake = {
-    magnitude = 0,
-    signX = math.random(0,50),
-    signY = math.random(0,50)
-  }
-}
-
-drawTick:addCallback(function()
-  if (camera.shake.magnitude ~= 0) then love.graphics.translate((function()
-    if camera.shake.signX > 25 then
-      camera.shake.signX = math.random(0,50)
-    else
-      camera.shake.signX = math.random(0,50)
-    end
-
-    if camera.shake.signX > 25 then
-      return -camera.shake.magnitude
-    else
-      return camera.shake.magnitude
-    end
-  end)(), (function()
-    if camera.shake.signY > 25 then
-      camera.shake.signY = math.random(0,50)
-    else
-      camera.shake.signY = math.random(0,50)
-    end
-
-    if camera.shake.signY > 25 then
-      return -camera.shake.magnitude
-    else
-      return camera.shake.magnitude
-    end
-  end)()) end
-end, -20)
-
-mainTick:addCallback(function(deltaTime)
-  physicsControl:step(deltaTime)
-end, 9e999)
+end, math.huge)
 
 function love.load(args)
   onLoad:step(args)
@@ -102,14 +60,11 @@ return {
     draw = drawTick,
     main = mainTick
   },
-  physics = physicsControl,
   eventer = eventer,
   controls = controlParser,
   config = config,
   fileLocations = {
     config = configLocation,
     keybinds = keybindsLocation
-  },
-  util = util,
-  camera = camera
+  }
 }
