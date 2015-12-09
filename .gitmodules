@@ -4,3 +4,6 @@
 [submodule "lib/vendor/Simple-Tiled-Implementation"]
 	path = lib/vendor/Simple-Tiled-Implementation
 	url = https://github.com/karai17/Simple-Tiled-Implementation.git
+[submodule "lib/EZControls"]
+	path = lib/EZControls
+	url = https://github.com/Luminess/EZControls.git
